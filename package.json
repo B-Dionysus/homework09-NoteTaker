@@ -13,5 +13,11 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.6"
-  }
+  },
+  "scripts":{
+    "test": "echo \"error here\" && exit 1",
+    "start": "node ./server/server.js",
+    "watch": "nodemon ./server/server.js"
+    }
+    
 }
