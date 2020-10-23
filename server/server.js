@@ -1,6 +1,7 @@
 const express=require("express");
 const app=express();
-const PORT=8080;
+var PORT = process.env.PORT || 8080;
+
 // The nice folks at the following URL explained this to me, more or less:
 // https://stackoverflow.com/questions/5924072/express-js-cant-get-my-static-files-why
 app.use("*/css",express.static("public/assets/css"));
