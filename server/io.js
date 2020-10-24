@@ -1,21 +1,22 @@
 const fs=require("fs");
 
-var fileContents;
-function loadFile(location){
-    console.log("Read from: "+location);
-    fs.readFile(location,"utf8", (error, data)=>error ? console.log(error) : fileContents=data);
-    console.log(fileContents);
-    // if(fileContents) return fileContents;
-    // console.log(location);
-    // fs.readFile(location, "utf8",(er, da)=>er ? console.log(er) : processData(da));
-    // console.log(fileContents);
+function addNote(newNote, path){
+    fs.readFile(path,"utf8",(err, data)=>{
+        if(err) console.log("Error in api/notes: "+err);
+        else{
+            let noteArray=[];
+            noteDb=JSON.parse(data);                
+            newNote.id=1+noteDb.length;
+            noteDb.push(newNote);
+            if(err=writeDb(noteDb, path)!=true) console.log("Error!! "+err);
+        }
+    });
+}
+function writeDb(array, path){
+    let content=JSON.stringify(array);
+    return fs.writeFile(path, content, err=>err ? err : true);
 }
 
-function addToFile(){}
-
-
 module.exports={
-    loadFile,
-    addToFile
-
-};
+    addNote
+}
