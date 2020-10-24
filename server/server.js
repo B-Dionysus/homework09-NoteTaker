@@ -6,6 +6,12 @@ var PORT = process.env.PORT || 8080;
 // https://stackoverflow.com/questions/5924072/express-js-cant-get-my-static-files-why
 app.use("*/css",express.static("public/assets/css"));
 app.use("*/js",express.static("public/assets/js"));
+
+// Sets up the Express app to handle data parsing
+// This turns out to be very important!
+// 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 // Check the GET routes
 require("./htmlRoutes.js")(app);
 require("./apiRoutes.js")(app);
